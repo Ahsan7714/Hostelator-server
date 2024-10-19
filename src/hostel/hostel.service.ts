@@ -111,4 +111,19 @@ export class HostelService {
       throw new BadRequestException('Failed to update hostel.');
     }
   }
+// get hostel user
+  async getHostelsByUserId(userId: number) {
+    try {
+      
+      const hostels = await this.prisma.hostel.findMany({
+        where: {
+          userId: userId,
+        },
+      });
+      return hostels;
+    } catch (error) {
+      // console.log(error);
+      throw new BadRequestException('Failed to retrieve hostels for this user.');
+    }
+  }
 }

@@ -23,9 +23,9 @@ export class AuthService {
           hash,
         },
       });
-
-      // Return the signed token instead of the user object
-      return this.signToken(user.id, user.email);
+  
+      // Generate a token for the newly created user
+      return this.signToken(user.id, user.email); // This line generates the token and returns it
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
@@ -35,6 +35,7 @@ export class AuthService {
       throw error;
     }
   }
+  
 
   async signin(dto: AuthDto) {
     const user = await this.prisma.user.findUnique({
@@ -54,7 +55,7 @@ export class AuthService {
     const secret = this.config.get('JWT_SECRET');
 
     const token = await this.jwt.signAsync(payload, {
-      expiresIn: '15m',
+      expiresIn: '1d',
       secret: secret,
     });
 

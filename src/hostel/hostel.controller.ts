@@ -27,6 +27,13 @@ export class HostelController {
       return  this.hostelService.getAllHostels();
     }
 
+    @Get('user') // Endpoint to get hostels created by the logged-in user
+  @UseGuards(JwtGuard)
+  getHostelsByUser(@GetUser('id') userId: number) {
+    console.log(userId)
+    return this.hostelService.getHostelsByUserId(userId);
+  }
+
     @Get(':id')
   getHostelById(@Param('id') id: string) {
     // Publicly accessible endpoint to get a single hostel by ID
@@ -52,4 +59,6 @@ export class HostelController {
   ) {
     return this.hostelService.updateHostel(Number(id), userId, dto);
   }
+
+  
 }
