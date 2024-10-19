@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { GetUser } from 'src/auth/decorator';
 import { CreateHostelDto } from './dto/create-hostel.dto';
 import { HostelService } from './hostel.service';
@@ -21,4 +21,35 @@ export class HostelController {
             dto,
         )
     }
+    @Get()
+    getAllHostels()
+    {
+      return  this.hostelService.getAllHostels();
+    }
+
+    @Get(':id')
+  getHostelById(@Param('id') id: string) {
+    // Publicly accessible endpoint to get a single hostel by ID
+    return this.hostelService.getHostelById(Number(id));
+  }
+   
+
+  @UseGuards(JwtGuard)
+  @Delete(':id')
+  async deleteHostel(
+    @GetUser('id') userId: number,
+    @Param('id') id: string,
+  ) {
+    return this.hostelService.deleteHostel(Number(id), userId);
+  }
+
+  @UseGuards(JwtGuard)
+  @Patch(':id')
+  async updateHostel(
+    @GetUser('id') userId: number,
+    @Param('id') id: string,
+    @Body() dto: CreateHostelDto,
+  ) {
+    return this.hostelService.updateHostel(Number(id), userId, dto);
+  }
 }

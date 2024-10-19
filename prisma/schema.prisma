@@ -38,7 +38,7 @@ model Hostel {
   image       String[]
   Features    String[]
   IsSecuirtyReq String
-  security    Int
+  security_fee    Int
   contactInfo String 
   under_zone String
   location   String

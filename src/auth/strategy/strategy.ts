@@ -15,7 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
           const token = request?.cookies?.jwt; // extract token from cookie
-          console.log(token)
           return token;
         },
       ]),
@@ -30,7 +29,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       },
     });
     delete user.hash;
-    console.log(user)
     return user;
   }
 }

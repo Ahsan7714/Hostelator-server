@@ -39,7 +39,7 @@ import {
   
     @IsInt()
     @IsOptional()
-    security: number;
+    security_fee: number;
   
     @IsString()
     @IsNotEmpty()
