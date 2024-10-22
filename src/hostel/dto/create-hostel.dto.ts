@@ -26,12 +26,12 @@ import {
     @IsArray()
     @IsString({ each: true })
     @IsNotEmpty()
-    image: string[];
+    images: string[];
   
     @IsArray()
     @IsString({ each: true })
     @IsNotEmpty()
-    Features: string[];
+    features: string[];
   
     @IsString()
     @IsNotEmpty()
@@ -52,5 +52,17 @@ import {
     @IsString()
     @IsNotEmpty()
     location: string;
+
+    @IsString()
+    @IsNotEmpty()
+    longitutde: string;
+
+    @IsString()
+    @IsNotEmpty()
+    latitude: string;
+
+    @IsString()
+    @IsNotEmpty()
+    rooms: string;
   }
   

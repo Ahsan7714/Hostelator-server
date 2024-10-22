@@ -35,13 +35,17 @@ model Hostel {
   description String
   price       Int
   banner_img      String
-  image       String[]
-  Features    String[]
+  images       String[]
+  features    String[]
   IsSecuirtyReq String
   security_fee    Int
   contactInfo String 
   under_zone String
   location   String
+  longitutde String
+  latitude   String
+  rooms      String
+
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
